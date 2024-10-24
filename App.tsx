@@ -1,8 +1,12 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'react-native';
 import BootSplash from 'react-native-bootsplash';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import { Provider } from 'react-redux';
 import { colors } from './src/config/colors';
+import RootNavigator from './src/navigation/RootNavigator';
+import { store } from './src/store/store';
 
 function App(): JSX.Element {
   useEffect(() => {
@@ -14,23 +18,16 @@ function App(): JSX.Element {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <StatusBar
-        backgroundColor={colors.authBackground}
-        barStyle={'dark-content'}
-      />
-      <Text>Hello Blott</Text>
-    </View>
+    <NavigationContainer>
+      <Provider store={store}>
+        <StatusBar
+          backgroundColor={colors.authBackground}
+          barStyle={'dark-content'}
+        />
+        <RootNavigator />
+      </Provider>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.authBackground,
-  },
-});
 
 export default App;
