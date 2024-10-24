@@ -1,11 +1,14 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import BootSplash from 'react-native-bootsplash';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import { colors } from './src/config/colors';
 
 function App(): JSX.Element {
   useEffect(() => {
     const hideSplash = async () => {
-      await BootSplash.hide({fade: true});
+      await BootSplash.hide({ fade: true });
+      changeNavigationBarColor(colors.authBackground);
     };
     hideSplash();
   }, []);
