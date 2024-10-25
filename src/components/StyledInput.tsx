@@ -1,11 +1,17 @@
-import { Platform, StyleSheet, TextInputProps, View } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import React, { forwardRef } from 'react';
+import {
+  Platform,
+  StyleSheet,
+  TextInput,
+  TextInputProps,
+  View,
+} from 'react-native';
 import { FONT_FAMILY } from '../assets/fonts';
 import { colors } from '../config/colors';
 
 interface IStyledInput extends TextInputProps {}
 
-const StyledInput: React.FC<IStyledInput> = props => {
+const StyledInput = forwardRef<TextInput, IStyledInput>((props, ref) => {
   const styles = StyleSheet.create({
     container: {
       borderBottomWidth: 1,
@@ -26,11 +32,12 @@ const StyledInput: React.FC<IStyledInput> = props => {
     <View style={styles.container}>
       <TextInput
         {...props}
+        ref={ref}
         style={styles.textInput}
         placeholderTextColor={colors.textPlaceholder}
       />
     </View>
   );
-};
+});
 
 export default StyledInput;

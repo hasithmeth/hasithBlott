@@ -1,11 +1,12 @@
 import { Formik, FormikProps } from 'formik';
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
   Text,
+  TextInput,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -16,7 +17,11 @@ import * as yup from 'yup';
 import { FONT_FAMILY } from '../assets/fonts';
 import NavImage from '../components/NavImage';
 import StyledInput from '../components/StyledInput';
+import { SCREEN_NAMES } from '../config';
 import { colors } from '../config/colors';
+import { useAppDispatch } from '../hooks';
+import { AuthNavigatorProp } from '../navigation/AuthNavigator';
+import { setUser } from '../store/slices/authSlice';
 
 const validationSchema = yup.object().shape({
   firstName: yup.string().required(),
@@ -28,8 +33,15 @@ interface IFormValues {
   lastName: string;
 }
 
-const Credentials = () => {
+interface ICredentials {
+  navigation: AuthNavigatorProp;
+}
+
+const Credentials: React.FC<ICredentials> = ({ navigation }) => {
   const insets = useSafeAreaInsets();
+  const dispatch = useAppDispatch();
+  const firstNameInputRef = useRef<TextInput>(null);
+  const lastNameInputRef = useRef<TextInput>(null);
 
   const initialValues: IFormValues = {
     firstName: '',
@@ -47,7 +59,16 @@ const Credentials = () => {
   });
 
   const handleNavigation = (values: IFormValues) => {
-    console.log(values);
+    const user = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+    } as User;
+    dispatch(setUser(user));
+    navigation.navigate(SCREEN_NAMES.notifications);
+  };
+
+  const handleFirstNameSubmitEditing = () => {
+    lastNameInputRef.current?.focus();
   };
 
   return (
@@ -55,6 +76,7 @@ const Credentials = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       validateOnChange
+      validateOnMount
       onSubmit={handleNavigation}>
       {({
         handleChange,
@@ -78,6 +100,10 @@ const Credentials = () => {
                   onChangeText={handleChange('firstName')}
                   value={values.firstName}
                   onBlur={handleBlur('firstName')}
+                  ref={firstNameInputRef}
+                  onSubmitEditing={handleFirstNameSubmitEditing}
+                  returnKeyType={'next'}
+                  enablesReturnKeyAutomatically={true}
                 />
                 <View style={styles.inputsMargin} />
                 <StyledInput
@@ -85,6 +111,9 @@ const Credentials = () => {
                   onChangeText={handleChange('lastName')}
                   value={values.lastName}
                   onBlur={handleBlur('lastName')}
+                  ref={lastNameInputRef}
+                  returnKeyType={'done'}
+                  enablesReturnKeyAutomatically={true}
                 />
                 {Platform.OS === 'android' ? (
                   <View style={styles.bottomContainer}>
