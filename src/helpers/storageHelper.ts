@@ -5,7 +5,7 @@ const KEY = '@BLOTT' as const;
 const getUser = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem(KEY);
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
+    return jsonValue != null ? (JSON.parse(jsonValue) as User) : null;
   } catch (e) {
     // read error
   }

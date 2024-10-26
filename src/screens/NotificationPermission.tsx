@@ -1,21 +1,23 @@
+import messaging from '@react-native-firebase/messaging';
+import { useIsFocused } from '@react-navigation/native';
+import React, { useEffect } from 'react';
 import {
   PermissionsAndroid,
   Platform,
+  StatusBar,
   StyleSheet,
   Text,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React from 'react';
-import messaging from '@react-native-firebase/messaging';
-import { colors } from '../config/colors';
 import FastImage from 'react-native-fast-image';
-import images from '../assets/images';
-import { FONT_FAMILY } from '../assets/fonts';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { AuthNavigatorProp } from '../navigation/AuthNavigator';
+import { FONT_FAMILY } from '../assets/fonts';
+import images from '../assets/images';
 import { SCREEN_NAMES } from '../config';
+import { colors } from '../config/colors';
+import { AuthNavigatorProp } from '../navigation/AuthNavigator';
 
 interface INotificationPermissions {
   navigation: AuthNavigatorProp;
@@ -25,6 +27,13 @@ const NotificationPermission: React.FC<INotificationPermissions> = ({
   navigation,
 }) => {
   const insets = useSafeAreaInsets();
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+    if (isFocused) {
+      changeNavigationBarColor(colors.authBackground);
+    }
+  }, [isFocused]);
 
   const handleNotificationRequest = async () => {
     if (Platform.OS === 'ios') {
@@ -41,6 +50,10 @@ const NotificationPermission: React.FC<INotificationPermissions> = ({
   return (
     <View style={styles.container}>
       <View style={styles.middleContainer}>
+        <StatusBar
+          backgroundColor={colors.authBackground}
+          barStyle={'dark-content'}
+        />
         <FastImage source={images.notif} style={styles.image} />
         <Text style={styles.mainText}>{'Get the most out of Blott ✅'}</Text>
         <Text style={styles.subText}>

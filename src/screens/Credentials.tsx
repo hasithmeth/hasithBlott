@@ -4,6 +4,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
@@ -85,49 +86,55 @@ const Credentials: React.FC<ICredentials> = ({ navigation }) => {
       }: FormikProps<IFormValues>) => {
         return (
           <GestureDetector gesture={gesture}>
-            <TouchableWithoutFeedback onPress={handleKeyboardDismiss}>
-              <View style={[styles.container, { paddingTop: insets.top }]}>
-                <Text style={styles.titleText}>{'Your Legal Name'}</Text>
-                <Text style={styles.subtitleText}>
-                  {
-                    'We need to know a bit about you so that we can create your account.'
-                  }
-                </Text>
-                <StyledInput
-                  placeholder={'First name'}
-                  onChangeText={handleChange('firstName')}
-                  value={values.firstName}
-                  onBlur={handleBlur('firstName')}
-                  ref={firstNameInputRef}
-                  onSubmitEditing={handleFirstNameSubmitEditing}
-                  returnKeyType={'next'}
-                  enablesReturnKeyAutomatically={true}
-                />
-                <View style={styles.inputsMargin} />
-                <StyledInput
-                  placeholder={'Last name'}
-                  onChangeText={handleChange('lastName')}
-                  value={values.lastName}
-                  onBlur={handleBlur('lastName')}
-                  ref={lastNameInputRef}
-                  returnKeyType={'done'}
-                  enablesReturnKeyAutomatically={true}
-                />
-                {Platform.OS === 'android' ? (
-                  <View style={styles.bottomContainer}>
-                    <View style={styles.navComponentAndroid}>
-                      <NavImage enabled={isValid} onPress={handleSubmit} />
+            <>
+              <StatusBar
+                backgroundColor={colors.authBackground}
+                barStyle={'dark-content'}
+              />
+              <TouchableWithoutFeedback onPress={handleKeyboardDismiss}>
+                <View style={[styles.container, { paddingTop: insets.top }]}>
+                  <Text style={styles.titleText}>{'Your Legal Name'}</Text>
+                  <Text style={styles.subtitleText}>
+                    {
+                      'We need to know a bit about you so that we can create your account.'
+                    }
+                  </Text>
+                  <StyledInput
+                    placeholder={'First name'}
+                    onChangeText={handleChange('firstName')}
+                    value={values.firstName}
+                    onBlur={handleBlur('firstName')}
+                    ref={firstNameInputRef}
+                    onSubmitEditing={handleFirstNameSubmitEditing}
+                    returnKeyType={'next'}
+                    enablesReturnKeyAutomatically={true}
+                  />
+                  <View style={styles.inputsMargin} />
+                  <StyledInput
+                    placeholder={'Last name'}
+                    onChangeText={handleChange('lastName')}
+                    value={values.lastName}
+                    onBlur={handleBlur('lastName')}
+                    ref={lastNameInputRef}
+                    returnKeyType={'done'}
+                    enablesReturnKeyAutomatically={true}
+                  />
+                  {Platform.OS === 'android' ? (
+                    <View style={styles.bottomContainer}>
+                      <View style={styles.navComponentAndroid}>
+                        <NavImage enabled={isValid} onPress={handleSubmit} />
+                      </View>
                     </View>
-                  </View>
-                ) : (
-                  <KeyboardAvoidingView
-                    style={styles.bottomContainer}
-                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-                    <NavImage enabled={isValid} onPress={handleSubmit} />
-                  </KeyboardAvoidingView>
-                )}
-              </View>
-            </TouchableWithoutFeedback>
+                  ) : (
+                    <KeyboardAvoidingView
+                      style={styles.bottomContainer}
+                      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+                      <NavImage enabled={isValid} onPress={handleSubmit} />
+                    </KeyboardAvoidingView>
+                  )}
+                </View>
+              </TouchableWithoutFeedback>
+            </>
           </GestureDetector>
         );
       }}

@@ -5,10 +5,12 @@ import {
 import { SCREEN_NAMES } from '../config';
 import Credentials from '../screens/Credentials';
 import NotificationPermission from '../screens/NotificationPermission';
+import Headlines from '../screens/Headlines';
 
 export type AuthStackParamList = {
   credentials: undefined;
   notifications: undefined;
+  headlines: undefined;
 };
 
 const AuthStack = createStackNavigator<AuthStackParamList>();
@@ -28,6 +30,7 @@ const AuthNavigator = () => {
         name={SCREEN_NAMES.notifications}
         component={NotificationPermission}
       />
+      <AuthStack.Screen name={SCREEN_NAMES.headlines} component={Headlines} />
     </AuthStack.Navigator>
   );
 };
