@@ -1,7 +1,6 @@
 import { useIsFocused } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
-  ActivityIndicator,
   FlatList,
   Platform,
   RefreshControl,
@@ -13,16 +12,16 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import api from '../api';
 import { FONT_FAMILY } from '../assets/fonts';
+import { SCREEN_NAMES } from '../config';
 import { colors } from '../config/colors';
+import { convertToDateString } from '../helpers/dateTimeHelper';
 import storageHelper from '../helpers/storageHelper';
 import { AuthNavigatorProp } from '../navigation/AuthNavigator';
-import api from '../api';
-import FastImage from 'react-native-fast-image';
-import { convertToDateString } from '../helpers/dateTimeHelper';
-import { SCREEN_NAMES } from '../config';
 
 interface IHeadlines {
   navigation: AuthNavigatorProp;
