@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "445098074642",
+    "project_id": "hasithblott",
+    "storage_bucket": "hasithblott.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445098074642:android:aa7c6bab7319cb0ef92ecb",
+        "android_client_info": {
+          "package_name": "com.hasithblott"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbJ1yr53mu2waSrh-MxtoSfgGdMj2qxWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

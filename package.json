@@ -7,11 +7,13 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "npx patch-package"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.0.0",
     "@react-native-community/hooks": "^3.0.0",
+    "@react-native-firebase/app": "^21.2.0",
     "@react-native-masked-view/masked-view": "^0.3.1",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/stack": "^6.4.1",

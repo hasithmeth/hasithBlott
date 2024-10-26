@@ -9,5 +9,6 @@
     "rnbootsplash",
     "Roboto",
     "zoontek"
-  ]
+  ],
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
