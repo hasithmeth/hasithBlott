@@ -122,7 +122,11 @@ const Credentials: React.FC<ICredentials> = ({ navigation }) => {
                   {Platform.OS === 'android' ? (
                     <View style={styles.bottomContainer}>
                       <View style={styles.navComponentAndroid}>
-                        <NavImage enabled={isValid} onPress={handleSubmit} />
+                        <NavImage
+                          enabled={isValid}
+                          onPress={handleSubmit}
+                          testID={'NavImage'}
+                        />
                       </View>
                     </View>
                   ) : (

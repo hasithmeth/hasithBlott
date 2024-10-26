@@ -12,6 +12,7 @@ import { colors } from '../config/colors';
 interface INavImage {
   enabled: boolean;
   onPress: () => void;
+  testID?: string;
 }
 
 const NavImage: React.FC<INavImage> = ({ enabled, onPress }) => {
