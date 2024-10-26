@@ -19,9 +19,8 @@ import NavImage from '../components/NavImage';
 import StyledInput from '../components/StyledInput';
 import { SCREEN_NAMES } from '../config';
 import { colors } from '../config/colors';
-import { useAppDispatch } from '../hooks';
+import storageHelper from '../helpers/storageHelper';
 import { AuthNavigatorProp } from '../navigation/AuthNavigator';
-import { setUser } from '../store/slices/authSlice';
 
 const validationSchema = yup.object().shape({
   firstName: yup.string().required(),
@@ -39,7 +38,6 @@ interface ICredentials {
 
 const Credentials: React.FC<ICredentials> = ({ navigation }) => {
   const insets = useSafeAreaInsets();
-  const dispatch = useAppDispatch();
   const firstNameInputRef = useRef<TextInput>(null);
   const lastNameInputRef = useRef<TextInput>(null);
 
@@ -58,12 +56,12 @@ const Credentials: React.FC<ICredentials> = ({ navigation }) => {
     }
   });
 
-  const handleNavigation = (values: IFormValues) => {
+  const handleNavigation = async (values: IFormValues) => {
     const user = {
       firstName: values.firstName,
       lastName: values.lastName,
     } as User;
-    dispatch(setUser(user));
+    await storageHelper.setUser(user);
     navigation.navigate(SCREEN_NAMES.notifications);
   };
 
