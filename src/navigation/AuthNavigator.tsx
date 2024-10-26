@@ -6,11 +6,13 @@ import { SCREEN_NAMES } from '../config';
 import Credentials from '../screens/Credentials';
 import NotificationPermission from '../screens/NotificationPermission';
 import Headlines from '../screens/Headlines';
+import Web from '../screens/Web';
 
 export type AuthStackParamList = {
   credentials: undefined;
   notifications: undefined;
   headlines: undefined;
+  web: { url: string };
 };
 
 const AuthStack = createStackNavigator<AuthStackParamList>();
@@ -31,6 +33,12 @@ const AuthNavigator = () => {
         component={NotificationPermission}
       />
       <AuthStack.Screen name={SCREEN_NAMES.headlines} component={Headlines} />
+      <AuthStack.Group
+        screenOptions={{
+          presentation: 'modal',
+        }}>
+        <AuthStack.Screen name={SCREEN_NAMES.web} component={Web} />
+      </AuthStack.Group>
     </AuthStack.Navigator>
   );
 };

@@ -11,4 +11,6 @@ interface Fonts {
   boldItalic700: string;
   black900: string;
   blackItalic900: string;
+  rubik400: string;
+  rubik500: string;
 }

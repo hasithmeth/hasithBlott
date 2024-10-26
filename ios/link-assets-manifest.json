@@ -48,6 +48,18 @@
     {
       "path": "src/assets/fonts/Roboto-ThinItalic.ttf",
       "sha1": "6a08d5ff3989d2b4a8e960ca0e88e7e0ff104708"
+    },
+    {
+      "path": "src/assets/fonts/Rubik-Medium.ttf",
+      "sha1": "7b93e52dc59bc6eb3b374b860c203cbe726c3c31"
+    },
+    {
+      "path": "src/assets/fonts/Rubik-Regular.ttf",
+      "sha1": "9d7091d63f35c9d28518b06566442a02b306980a"
+    },
+    {
+      "path": "src/assets/fonts/index.ts",
+      "sha1": "f1bf42564459a9c37878b31b0230c9cbb91e07d7"
     }
   ]
 }
