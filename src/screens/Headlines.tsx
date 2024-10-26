@@ -1,6 +1,7 @@
 import { useIsFocused } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
+  ActivityIndicator,
   FlatList,
   Platform,
   RefreshControl,
@@ -69,35 +70,38 @@ const Headlines: React.FC<IHeadlines> = ({ navigation }) => {
     }
   }, [isFocused]);
 
-  const _renderItem = useCallback(({ item }: { item: Headlines }) => {
-    const handleURLNavigation = () => {
-      navigation.navigate(SCREEN_NAMES.web, { url: item.url });
-    };
+  const _renderItem = useCallback(
+    ({ item }: { item: Headlines }) => {
+      const handleURLNavigation = () => {
+        navigation.navigate(SCREEN_NAMES.web, { url: item.url });
+      };
 
-    return (
-      <TouchableWithoutFeedback onPress={handleURLNavigation}>
-        <View style={styles.cardContainer}>
-          <FastImage source={{ uri: item.image }} style={styles.thumbImage} />
-          <View style={styles.detailContainer}>
-            <View style={styles.sourceRowContainer}>
-              <Text style={styles.sourceText} numberOfLines={1}>
-                {item.source.toUpperCase()}
-              </Text>
-              <Text style={styles.sourceText} numberOfLines={1}>
-                {convertToDateString(item.datetime)}
+      return (
+        <TouchableWithoutFeedback onPress={handleURLNavigation}>
+          <View style={styles.cardContainer}>
+            <FastImage source={{ uri: item.image }} style={styles.thumbImage} />
+            <View style={styles.detailContainer}>
+              <View style={styles.sourceRowContainer}>
+                <Text style={styles.sourceText} numberOfLines={1}>
+                  {item.source.toUpperCase()}
+                </Text>
+                <Text style={styles.sourceText} numberOfLines={1}>
+                  {convertToDateString(item.datetime)}
+                </Text>
+              </View>
+              <Text
+                style={styles.headlineText}
+                numberOfLines={3}
+                ellipsizeMode={'tail'}>
+                {item.headline}
               </Text>
             </View>
-            <Text
-              style={styles.headlineText}
-              numberOfLines={3}
-              ellipsizeMode={'tail'}>
-              {item.headline}
-            </Text>
           </View>
-        </View>
-      </TouchableWithoutFeedback>
-    );
-  }, []);
+        </TouchableWithoutFeedback>
+      );
+    },
+    [navigation],
+  );
 
   return (
     <View style={styles.container}>

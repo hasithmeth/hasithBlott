@@ -32,7 +32,13 @@ const AuthNavigator = () => {
         name={SCREEN_NAMES.notifications}
         component={NotificationPermission}
       />
-      <AuthStack.Screen name={SCREEN_NAMES.headlines} component={Headlines} />
+      <AuthStack.Screen
+        name={SCREEN_NAMES.headlines}
+        component={Headlines}
+        options={{
+          gestureEnabled: false,
+        }}
+      />
       <AuthStack.Group
         screenOptions={{
           presentation: 'modal',
