@@ -108,6 +108,7 @@ const Credentials: React.FC<ICredentials> = ({ navigation }) => {
                     onSubmitEditing={handleFirstNameSubmitEditing}
                     returnKeyType={'next'}
                     enablesReturnKeyAutomatically={true}
+                    testID="first-name"
                   />
                   <View style={styles.inputsMargin} />
                   <StyledInput
@@ -118,15 +119,12 @@ const Credentials: React.FC<ICredentials> = ({ navigation }) => {
                     ref={lastNameInputRef}
                     returnKeyType={'done'}
                     enablesReturnKeyAutomatically={true}
+                    testID="last-name"
                   />
                   {Platform.OS === 'android' ? (
                     <View style={styles.bottomContainer}>
                       <View style={styles.navComponentAndroid}>
-                        <NavImage
-                          enabled={isValid}
-                          onPress={handleSubmit}
-                          testID={'NavImage'}
-                        />
+                        <NavImage enabled={isValid} onPress={handleSubmit} />
                       </View>
                     </View>
                   ) : (
@@ -136,6 +134,9 @@ const Credentials: React.FC<ICredentials> = ({ navigation }) => {
                       <NavImage enabled={isValid} onPress={handleSubmit} />
                     </KeyboardAvoidingView>
                   )}
+                  <Text testID="is-valid" style={styles.testRender}>
+                    {isValid ? 'Valid' : 'Invalid'}
+                  </Text>
                 </View>
               </TouchableWithoutFeedback>
             </>
@@ -183,5 +184,9 @@ const styles = StyleSheet.create({
   },
   navComponentAndroid: {
     bottom: 24,
+  },
+  testRender: {
+    position: 'absolute',
+    opacity: 0,
   },
 });

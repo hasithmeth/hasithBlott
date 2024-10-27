@@ -55,8 +55,10 @@ const NotificationPermission: React.FC<INotificationPermissions> = ({
           barStyle={'dark-content'}
         />
         <FastImage source={images.notif} style={styles.image} />
-        <Text style={styles.mainText}>{'Get the most out of Blott ✅'}</Text>
-        <Text style={styles.subText}>
+        <Text style={styles.mainText} testID="text-title">
+          {'Get the most out of Blott ✅'}
+        </Text>
+        <Text style={styles.subText} testID="text-subtitle">
           {
             'Allow notifications to stay in the loop with your payments, requests and groups.'
           }
@@ -74,7 +76,9 @@ const NotificationPermission: React.FC<INotificationPermissions> = ({
         ]}>
         <TouchableWithoutFeedback onPress={handleNotificationRequest}>
           <View style={styles.buttonContainer}>
-            <Text style={styles.buttonText}>{'Continue'}</Text>
+            <Text style={styles.buttonText} testID="text-continue">
+              {'Continue'}
+            </Text>
           </View>
         </TouchableWithoutFeedback>
       </View>
