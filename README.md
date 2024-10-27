@@ -1,13 +1,14 @@
-React Native CLI Assignment - Blott
 
-Author: Hasith Methmal Jayasekara  
-Date: October 26, 2024
+# React Native CLI Assignment - Blott
 
-Welcome to my React Native CLI assignment! This guide will provide you with all the necessary steps to get the app running on both iOS and Android platforms.
+**Author**: Hasith Methmal Jayasekara  
+**Date**: October 26, 2024
+
+Welcome to my React Native CLI assignment! This guide will provide all the necessary steps to get the app running on both iOS and Android platforms.
 
 ---
 
-📋 Prerequisites
+## 📋 Prerequisites
 
 To ensure the app works smoothly, please check that you have the following tools installed and up-to-date:
 
@@ -16,18 +17,28 @@ To ensure the app works smoothly, please check that you have the following tools
 - React Native CLI
 - Java 17 (or newer) - Required for Android
 
-🚀 Getting Started
+## 🚀 Getting Started
 
-Follow these steps to clone, install dependencies, and run the application.
+Follow these steps to clone, install dependencies, set up environment variables, and run the application.
 
-1. Clone the Repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/hasithmeth/hasithBlott.git
 cd hasithBlott
 ```
 
-2. Install Dependencies
+### 2. Set Up Environment Variables
+
+After cloning, create a `.env` file from the `.env.template`:
+
+```bash
+cp .env.template .env
+```
+
+Then, add your `API_KEY` and any other required environment variables in the `.env` file.
+
+### 3. Install Dependencies
 
 Run the following command to install all necessary packages:
 
@@ -35,7 +46,7 @@ Run the following command to install all necessary packages:
 npm install
 ```
 
-3. Set Up iOS (macOS only)
+### 4. Set Up iOS (macOS only)
 
 To link native dependencies and ensure everything is ready for iOS, run:
 
@@ -43,32 +54,44 @@ To link native dependencies and ensure everything is ready for iOS, run:
 npx pod-install
 ```
 
-4. Run the Application
+### 5. Run the Application
 
 You're ready to launch the app!
 
-iOS
+- **iOS**:
+
+  ```bash
+  npx react-native run-ios
+  ```
+
+- **Android**:
+
+  Ensure you’re using Java 17 or newer, then run:
+
+  ```bash
+  npx react-native run-android
+  ```
+
+### 6. Run Tests
+
+To run tests, simply use:
 
 ```bash
-npx react-native run-ios
+npm test
 ```
 
-Android
+This will execute all the available tests in the project.
 
-Ensure you’re using Java 17 or newer, then run:
+---
 
-```bash
-npx react-native run-android
-```
-
-ℹ️ Additional Notes
+## ℹ️ Additional Notes
 
 - Make sure Android Studio and Xcode (macOS) are set up and configured to work with React Native.
 - Ensure you have an Android or iOS simulator/emulator running, or connect a physical device before starting the app.
 
 ---
 
-👨‍💻 Author
+## 👨‍💻 Author
 
 This project was created by Hasith Methmal Jayasekara.  
 Feel free to reach out for any questions or improvements!
